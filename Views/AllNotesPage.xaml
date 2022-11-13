@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lyst.Views.AllNotesPage"
+             Title="{Binding ConversationId}">
+
+    <VerticalStackLayout Spacing="10" Margin="5">
+        <!-- Display conversation in a list -->
+        <CollectionView x:Name="notesCollection"
+                        ItemsSource="{Binding Notes}"
+                        Margin="20">
+
+            <!--Designate how the collection of items are laid out-->
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <!--Define the appearance of each item in the list-->
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout>
+                        <CheckBox IsChecked="{Binding Checked}"/>
+                        <StackLayout>
+                            <Label Text="{Binding Text}" FontSize="22"/>
+                            <Label Text="{Binding Date}" FontSize="14" TextColor="Silver"/>
+                        </StackLayout>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Entry x:Name="entry"
+           Placeholder="New note"
+           TextChanged="OnEntryTextChanged"
+           Completed="OnEntryCompleted" />
+
+    </VerticalStackLayout>
+</ContentPage>
+    
