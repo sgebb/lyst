@@ -16,30 +16,25 @@ internal class AllConversations
         // Get the folder where the lyst are stored.
         string appDataPath = FileSystem.AppDataDirectory;
 
-        //// Use Linq extensions to load the *.lyst.txt files.
-        //IEnumerable<Note> lyst = Directory
+        // Use Linq extensions to load the *.lyst.txt files.
+        IEnumerable<Conversation> conversations = Directory
 
-        //                            // Select the file names from the directory
-        //                            .EnumerateFiles(appDataPath, "*.lyst.txt")
+                                    // Select the folder names from the directory
+                                    .EnumerateFiles(appDataPath, "*.lyst.txt")
 
-        //                            // Each file name is used to create a new Conversation
-        //                            .Select(filename => new Note()
-        //                            {
-        //                                Filename = filename,
-        //                                Text = File.ReadAllText(filename),
-        //                                Date = File.GetCreationTime(filename)
-        //                            })
+                                    // Each file name is used to create a new Conversation
+                                    .Select(filename => new Conversation()
+                                    {
+                                        Id = filename,
+                                        Name = filename,
+                                        CreatedAt = File.GetCreationTimeUtc(filename),
+                                        UpdatedAt = File.GetLastWriteTimeUtc(filename)
+                                    })
 
-        //                            // With the final collection of lyst, order them by date
-        //                            .OrderBy(note => note.Date);
+                                    .OrderBy(note => note.UpdatedAt);
 
-        // Add each note into the ObservableCollection
-        //foreach (Note note in lyst)
-        //    Notes.Add(note);
+        foreach (var conversation in conversations)
+            Conversations.Add(conversation);
 
-        Conversations.Add(new Conversation
-        {
-            Name = "SnorreJarrod"
-        });
     }
 }

@@ -12,34 +12,26 @@ internal class AllNotes
         ConversationId = conversationId;
         Notes.Clear();
 
-        // Get the folder where the lyst are stored.
-        string appDataPath = FileSystem.AppDataDirectory;
-
         // Use Linq extensions to load the *.lyst.txt files.
-        IEnumerable<Note> lyst = Directory
-
-                                    // Select the file names from the directory
-                                    .EnumerateFiles(appDataPath, "*.lyst.txt")
-
-                                    // Each file name is used to create a new Note
-                                    .Select(filename => new Note()
-                                    {
-                                        Filename = filename,
-                                        Text = File.ReadAllText(filename),
-                                        Date = File.GetCreationTime(filename)
-                                    })
-
-                                    // With the final collection of lyst, order them by date
-                                    .OrderBy(note => note.Date);
+        var notes = System.Text.Json.JsonSerializer.Deserialize<List<Note>>(File.ReadAllText(conversationId));
 
         // Add each note into the ObservableCollection
-        foreach (Note note in lyst)
+        foreach (var note in notes)
+        {
             Notes.Add(note);
+        }
     }
 
     public void AddNote(Note note)
     {
         Notes.Add(note);
+        File.WriteAllText(ConversationId, System.Text.Json.JsonSerializer.Serialize(Notes));
+    }
 
+    public void ReverseCheck(int noteid)
+    {
+        var note = Notes.FirstOrDefault(n => n.Id == noteid);
+        note.Checked =! note.Checked;
+        File.WriteAllText(ConversationId, System.Text.Json.JsonSerializer.Serialize(Notes));
     }
 }

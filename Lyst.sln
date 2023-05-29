@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.32916.344
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lyst", "Lyst.csproj", "{0CE9FCF7-16AA-467F-8F04-FF175FBC288D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lyst.API", "API\Lyst.API\Lyst.API.csproj", "{15671A82-9983-4F6F-980D-EA503EABAFC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{0CE9FCF7-16AA-467F-8F04-FF175FBC288D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CE9FCF7-16AA-467F-8F04-FF175FBC288D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0CE9FCF7-16AA-467F-8F04-FF175FBC288D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{15671A82-9983-4F6F-980D-EA503EABAFC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15671A82-9983-4F6F-980D-EA503EABAFC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15671A82-9983-4F6F-980D-EA503EABAFC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15671A82-9983-4F6F-980D-EA503EABAFC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

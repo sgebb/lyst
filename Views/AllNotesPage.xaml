@@ -19,7 +19,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <HorizontalStackLayout>
-                        <CheckBox IsChecked="{Binding Checked}"/>
+                        <CheckBox IsChecked="{Binding Checked}" CheckedChanged="OnCheckBoxCheckedChanged"/>
                         <StackLayout>
                             <Label Text="{Binding Text}" FontSize="22"/>
                             <Label Text="{Binding Date}" FontSize="14" TextColor="Silver"/>

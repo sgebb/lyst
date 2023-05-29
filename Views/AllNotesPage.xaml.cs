@@ -26,18 +26,10 @@ public partial class AllNotesPage : ContentPage
 
     private void LoadConversation(string conversationId)
     {
-        //Models.Note noteModel = new Models.Note();
-        //noteModel.Filename = fileName;
+        var allNotes = new AllNotes();
+        allNotes.LoadNotes(conversationId);
 
-        //if (File.Exists(fileName))
-        //{
-        //    noteModel.Date = File.GetCreationTime(fileName);
-        //    noteModel.Text = File.ReadAllText(fileName);
-        //}
-
-        //BindingContext = noteModel;
-
-        ((Models.AllNotes)BindingContext).LoadNotes(conversationId);
+        BindingContext = allNotes;
     }
 
     private void OnEntryTextChanged(object sender, TextChangedEventArgs e)
@@ -53,10 +45,18 @@ public partial class AllNotesPage : ContentPage
             ((AllNotes)BindingContext).AddNote(new Note
             {
                 Text = text,
-                Date = DateTime.Now,
+                Date = DateTimeOffset.Now,
+                Checked = false
             });
 
             ((Entry)sender).Text = "";
         }
+    }
+
+    private void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        var checkbox = (CheckBox)sender;
+        var note = (Note)checkbox.BindingContext;
+        ((AllNotes)BindingContext).ReverseCheck(note.Id);
     }
 }
